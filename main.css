@@ -1,0 +1,325 @@
+.container {
+	display: flex;
+}
+
+.left-panel {
+	flex-basis: 65%;
+}
+
+.right-panel {
+	flex-basis: 35%;
+}
+
+.left-panel,
+.right-panel {
+	background-color: white;
+	margin: 10px;
+	border-radius: 5px;
+}
+
+.line {
+	margin: 0px;
+	padding: 0px;
+}
+
+.input-row {
+	display: flex;
+} 
+
+.input-field {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	margin-right: 0px;
+	margin-left: 10px;
+	height: 30px;
+	width: 85%;
+	border-width: 1px;
+	border-color: lightgrey;
+}
+
+.add-product {
+	background-color: blue;
+	color: white;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 15%;
+	border: none;
+	position: relative;
+}
+
+.input-field, .add-product {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font: 16px arial;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.product-name {
+	margin: 10px;
+	font: 20px arial;
+	width: 33%;
+}
+
+.product-name-input {
+	margin: 10px;
+	font: 20px arial;
+	width: 32%;
+	font: 14px arial;
+	transition: border-color 0.3s;
+	outline: none;
+	border-color: #48ceec;
+}
+
+.product-name-input:focus {
+	box-shadow: 0px 0px 5px rgba(35, 210, 230, 0.893);
+}
+
+.buttons-panel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 33%;
+}
+
+.minus-button {
+	background-color: red;
+	color: white;
+	border-radius: 15px;
+	position: relative;
+}
+
+.count-label {
+	background-color: lightgray;
+	border-radius: 5px;
+	padding-top: 10px;
+
+}
+
+.plus-button {
+	background-color: green;
+	color: white;
+	border-radius: 15px;
+	position: relative;
+}
+
+.minus-button, .count-label, .plus-button {
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	height: 30px;
+	width: 30px;
+	font: 16px arial;
+	margin: 5px;
+	border: none;
+}
+
+.buttons-container {
+	display: flex;
+	justify-content: flex-end;
+	width: 34%;
+}
+
+.buy-button {
+	border-width: 1px;
+	border-color: lightgrey;
+}
+
+.delete-button {
+	background-color: red;
+	color: white;
+	border: none;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.delete-button, .buy-button {
+	margin: 10px;
+	border-radius: 5px;
+	font: 16px arial;
+	position: relative;
+}
+
+.total-section {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.right-section {
+	margin: 15px;
+	font: 20px arial;
+	border-width: 10px;
+}
+
+.product-item {
+	background-color: lightgray;
+	height: 25px;
+	padding: 7px;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+.amount {
+	background-color: #f36b11a4;
+	color: white;
+	border-radius: 10px;
+	height: 20px;
+	width: 20px;
+	padding-top: 2px;
+}
+
+.product-item, .amount {
+	font: 14px arial;
+	display: inline-block;
+	text-align: center;
+	align-items: center;
+}
+
+.badge {
+	position: fixed;
+	bottom: -60px;
+	left: 5%;
+	background-color: #621980;
+	color: white;
+	padding: 10px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	transition: transform 0.5s ease-out, background-color 0.5s;
+}
+  
+.badge:hover {
+	transform: translateY(-60px);
+	background-color: blue;
+}
+  
+@media print {
+	.badge::after {
+	  background-color: white;
+	  border-color:  #621980;
+	  border-width: 2px;
+	}
+
+	.badge::before {
+		content: "Ukrainets";
+	}
+}
+
+@media (max-width: 650px) {
+	.container {
+		flex-direction: column;
+	}
+	
+	.left-panel, .right-panel {
+		width: 95%;
+	}
+}
+
+.add-product::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: violet;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.add-product:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1) translateY(-115%);
+}
+
+.minus-button::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: violet;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.minus-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1) translateY(-130%);
+}
+
+.plus-button::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: violet;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.plus-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1) translateY(-130%);
+}
+
+.delete-button::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: violet;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.delete-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1) translateY(-130%);
+}
+
+.buy-button::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: violet;
+    color: white;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.buy-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1) translateY(-60px);
+}
