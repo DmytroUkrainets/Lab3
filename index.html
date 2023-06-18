@@ -1,108 +1,93 @@
 <!DOCTYPE html>
-<html>
-	<head lang="uk">
-		<meta charset="utf-8"/>
-		<meta name="description" content="Кошик покупок"/>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta name="Українець Дмитро"/>
+		<meta name="description" content="Кошик покупок"/>
 		<title>Кошик покупок</title>
-
-		<link rel="stylesheet" type="text/css" href="main.css"/>
+		<link rel="stylesheet" type="text/css" href="main.css" />
 	</head>
 
-	<body style="background-color: lightgrey;">
-		<div class="container">
-			<div class="left-panel">
-				<div class="input-row">
-					<input class="input-field" type="text" placeholder="Назва товару" required/>
-					<button class="add-product" data-tooltip="Додавання в кошик"><b>Додати</b></button>
-				</div>
-				<hr class="line"/>
+	<body>
+		<div class="active_box">
+			<form class="add-form">
+				<input type="text" class="input" onkeydown="handleKeyDown(event)" placeholder="Назва товару"/>
+				<button type="button" onclick="adding(event)" class="adding" data-tooltip="Додати товар">Додати</button>
+			</form>
 
-				<div class="row">
-					<label class="product-name"><s>Помідори</s></label>
-					<div class="buttons-panel">
-						<button class="minus-button" style="visibility: hidden;" data-tooltip="Списування товару"><b>-</b></button>
-						<label class="count-label">2</label>
-						<button class="plus-button" style="visibility: hidden;" data-tooltip="Додавання товару"><b>+</b></button>
-					</div>
-					<div class="buttons-container">
-						<button class="buy-button" data-tooltip="Не куплений товар">Не куплено</button>
-						<button class="delete-button" style="display: none;" data-tooltip="Видалення товару"><b>×</b></button>
-					</div>
+			<form class="item first">
+				<div class="name" contenteditable="false" onfocus="remember(event)" onblur="rename(event)">
+					<p>Помідори</p>
 				</div>
-				<hr class="line"/>
+				<div class="quantity">
+					<button class="minus" onclick="decreaseNumber(event)" type="button" data-tooltip="Зменшити">-</button>
+					<button class="number" disabled="disabled">2</button>
+					<button class="plus" onclick="increaseNumber(event)" type="button" data-tooltip="Збільшити">+</button>
+				</div>
+				<div class="status">
+					<button class="bought" onclick="makeBought(event)" type="button" data-tooltip="Підтвердити покупку">Не куплено</button>
+					<button class="cancel" onclick="deleting(event)" type="button" data-tooltip="Скасувати">x</button>
+				</div>
+			</form>
 
-				<div class="row">
-					<label class="product-name">Печиво</label>
-					<div class="buttons-panel">
-						<button class="minus-button" data-tooltip="Списування товару"><b>-</b></button>
-						<label class="count-label">2</label>
-						<button class="plus-button" data-tooltip="Додавання товару"><b>+</b></button>
-					</div>
-					<div class="buttons-container">
-						<button class="buy-button" data-tooltip="Куплений товар">Куплено</button>
-						<button class="delete-button" data-tooltip="Видаленя товару"><b>×</b></button>
-					</div>
-				</div>
-				<hr class="line"/>
-
-				<div class="row">
-					<input  class="product-name-input" type="text" value="Сир"/>
-					<div class="buttons-panel">
-						<button class="minus-button" style="opacity: 0.5;" data-tooltip="Списання товару"><b>-</b></button>
-						<label class="count-label">1</label>
-						<button class="plus-button" data-tooltip="Додавання товару"><b>+</b></button>
-					</div>
-					<div class="buttons-container">
-						<button class="buy-button" data-tooltip="Куплений товар">Куплено</button>
-						<button class="delete-button" data-tooltip="Видалення товару"><b>×</b></button>
-					</div>
-				</div>
+			<form class="item">
+			<div class="name" contenteditable="true"  onfocus="remember(event)" onblur="rename(event)">
+				<p>Печиво</p>
 			</div>
-
-			<div class="right-panel">
-				<div class="total-section">
-					<label class="right-section"><b>Залишилося</b></label>
-				</div>
-				<hr class="line"/>
-
-				<div>
-					<label class="product-item" style="margin-right: 1px; padding-bottom: 2px;">
-						Печиво
-						<span class="amount">2</span>
-					</label>
-					<label class="product-item" style="margin-left: 1px; padding-bottom: 2px;">
-						Сир
-						<span class="amount">1</span>
-					</label>
-				</div>
-				<hr class="line"/>
-
-				<div class="total-section">
-					<label class="right-section"l><b>Куплено</b></label>
-				</div>
-				<hr class="line"/>
-
-				<div>
-					<label class="product-item" style="padding-bottom: 2px;">
-						<s>Помідори</s>
-						<span class="amount"><s>2</s></span>
-					</label>
-				</div>
+			<div class="quantity">
+				<button class="minus" onclick="decreaseNumber(event)" type="button" data-tooltip="Зменшити">-</button>
+				<button class="number" disabled="disabled">2</button>
+				<button class="plus" onclick="increaseNumber(event)" type="button" data-tooltip="Збільшити">+</button>
 			</div>
+			<div class="status">
+				<button class="bought" onclick="makeBought(event)" type="button" data-tooltip="Підтвердити покупку">Куплено</button>
+				<button class="cancel" onclick="deleting(event)" type="button" data-tooltip="Скасувати">x</button>
+			</div>
+			</form>
+
+			<form class="item last">
+			<div class="name" contenteditable="true"  onfocus="remember(event)" onblur="rename(event)">
+				<p>Сир</p>
+			</div>
+			<div class="quantity">
+				<button class="minus inactive" onclick="decreaseNumber(event)" type="button" data-tooltip="Зменшити">-</button>
+				<button class="number" disabled="disabled">1</button>
+				<button class="plus" onclick="increaseNumber(event)" type="button" data-tooltip="Збільшити">+</button>
+			</div>
+			<div class="status">
+				<button class="bought" onclick="makeBought(event)" type="button" data-tooltip="Підтвердити покупку">Куплено</button>
+				<button class="cancel" onclick="deleting(event)" type="button" data-tooltip="Скасувати">x</button>
+			</div>
+			</form>
+
 		</div>
+		<br/>
+		<section class="cart">
+			<b class="titles">Залишилося</b>
+			<div class="remaining">
+			<span class="product-item">Печиво
+				<span class="amount">2</span>
+			</span>
+			<span class="product-item">Сир
+				<span class="amount">1</span>
+			</span>
+			</div>
+			<b class="titles">
+				Куплено
+			</b>
+			<div class="bought-item">
+			<span class="product-item">Помідори
+				<span class="amount">2</span>
+			</span>
+			</div>
+		</section>
+			<button class="badge">
+				<b class="buylist">Buy List</b>
+				<label class="creator">Created by:</label>
+				<b class="author-name">Dmytro</b>
+				<b class="author-name">Ukrainets</b>
+			</button>
+		<script src="actions.js"></script>
 	</body>
-
-	<footer>
-		<div class="badge">
-			Buy List
-			<br/>
-			<span class="badge-text"></span>
-			<br/>
-			<span class="badge-text" style="font: 10px arial;">Created by:</span>
-			<br/>
-			<span class="badge-text" style="font: 14px arial;">Ukrainets</span>
-		</div>
-	</footer>
 </html>
