@@ -7,35 +7,43 @@ body{
 	flex-wrap: wrap;
 	box-sizing: border-box;
 }
-.active_box, .cart {
+
+.actions_container, .pasiv_container {
 	margin-top: 2%;
-	height: auto;
+	height: fit-content;
 	width: 70%;
 	background-color: white;
 	border-radius: 5px;
 	margin-left: 2%;
 	box-shadow: 4px 4px 8px #BFBFBF;
+}
 
+.pasiv_container{
+	margin-right: 1.5%;
+	margin-left: 1.5%;
+	width: 24%;
 }
-.cart{
-	overflow: hidden;
-}
-.input:focus{
 
+.input:focus{	
 }
-.add-form{
+
+.add_form{
 	height: 78px;
 	align-items: center;
 	display: flex;
 	border-bottom: 1.5px solid lightgrey;
 	justify-content: unset;
 }
-.first .name{
+
+.item_bought .name{
 	text-decoration: line-through;
 }
+
 .bought-item{
 	text-decoration: line-through;
+	min-height: 65px;
 }
+
 .input, .adding{
 	height: 34px;
 	width: 75%;
@@ -47,6 +55,7 @@ body{
 	border-radius: 5px 0 0 5px;
 	box-sizing: border-box;
 }
+
 .adding{
 	padding-right: 0;
 	color: white;
@@ -60,19 +69,24 @@ body{
 	border-radius: 0 5px 5px 0;
 	box-shadow: inset 0 -3px #2276B7;
 }
+
 .adding:hover{
 	background-color: #2276B7;
 	border:#2276B7;
 }
+
 .input:focus{
 	outline:none;
 	border-radius: 0 5px 5px 0;
 	border: 2px solid #2285D0;
 }
+
 .input::placeholder{
 	text-indent: 4px;
 }
-.quantity, .status, .name{
+
+.quantity, .buying, .name{
+	max-width: 33%;
 	width: 33%;
 	height: 65%;
 	display: flex;
@@ -80,15 +94,21 @@ body{
 	align-items: center;
 	margin-bottom: auto;
 	margin-top: auto;
+
 }
-.status{
+
+.buying{
 	margin-right: 2%;
 }
+
 .quantity{
 	justify-content: center;
 	color: #7B7B7B;
 }
+
 .name {
+	box-sizing: border-box;
+	text-wrap: normal;
 	margin-left:2%;
 	align-items: center;
 	background-color: white;
@@ -96,23 +116,35 @@ body{
 	border-radius: 5px;
 	justify-content: left;
 }
+
 .name p{
+	text-wrap: normal;
+	max-width: 100%;
 	overflow: hidden;
 }
 
-.item, .first {
+.name p:focus{
+	max-width: 100%;
+}
+
+.item, .item_bought {
 	height: 58px;
 	align-items: center;
 	justify-content: space-between;
 	display: flex;
 	border-bottom: 1.5px solid lightgrey;
+	overflow: visible;
+	box-sizing: border-box;
 }
+
 [data-tooltip]{
 	position: relative;
 	display: inline-block;
 }
+
 [data-tooltip]::before{
 	content: attr(data-tooltip);
+	overflow: hidden;
 	visibility: hidden;
 	max-width: 100px;
 	background-color: #AF01DA;
@@ -133,10 +165,16 @@ body{
 	bottom: calc(120%);
 	left: 50%;
 }
+
 [data-tooltip]:hover::before {
 	visibility: visible;
 	opacity: 1;
 }
+
+[data-tooltip]:hover{
+	overflow: visible;
+}
+
 .minus, .plus, .cancel, .number, .bought {
 	font-size: 14px;
 	font-weight: bold;
@@ -149,12 +187,15 @@ body{
 	margin-left: 2%;
 	margin-top:auto;
 	margin-bottom: auto;
+	overflow: hidden;
 }
+
 .minus{
 	font-size: 23px;
 	box-shadow: inset 0 -3px #BF2728;
 	box-sizing: border-box;
 }
+
 .minus:hover{
 	border: #BF2728;
 	background-color: #BF2728;
@@ -170,16 +211,19 @@ body{
 	border-radius: 10%;
 	color: #7B7B7B;
 }
+
 .plus{
 	font-size: 23px;
 	background-color: #22BA46;
 	box-shadow: inset 0 -3px #21A340;
 	box-sizing: border-box;
 }
+
 .plus:hover{
 	background-color: #21A340;
 	border: 1px solid #21A340;
 }
+
 .bought{
 	width: 40%;
 	border-radius: 5px;
@@ -190,6 +234,7 @@ body{
 	box-sizing: border-box;
 
 }
+
 .bought:hover{
 	background-color: #CFCFD0;
 	border:#CFCFD0;
@@ -201,23 +246,27 @@ body{
 	box-shadow: inset 0 -3px #BF2728;
 	box-sizing: border-box;
 }
+
 .cancel:hover{
 	border: #BF2728;
 	background-color: #BF2728;
 }
 
-.first .quantity .plus{
+.item_bought .quantity .plus{
 	visibility: hidden;
 	position: relative;
 }
-.first .quantity .minus{
+
+.item_bought .quantity .minus{
 	visibility: hidden;
 	position: relative;
 }
-.first .status .cancel{
+
+.item_bought .buying .cancel{
 	visibility: hidden;
 	position: absolute;
 }
+
 .last{
 
 	border: 0;
@@ -228,21 +277,15 @@ body{
 	pointer-events: none;
 }
 
-.cart{
-	width: 24%;
-	height: 260px;
-	margin-right: 1.5%;
-	margin-left: 1.5%;
-}
-
-.titles{
+.title{
 	font-size: 25px;
 	text-indent: 8px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	overflow: hidden;
 	border-bottom: 1.5px solid lightgrey;
-	height: 65px;
+	height: auto;
+	min-height: 65px;
 	background-color: white;
 	align-items: center;
 	display: flex;
@@ -250,8 +293,9 @@ body{
 	box-sizing: border-box;
 }
 
-.remaining, .bought-item{
-	height: 65px;
+.remained, .bought-item{
+	min-height: 65px;
+	height: auto;
 	border: 5px;
 	align-items: center;
 	display: flex;
@@ -259,26 +303,27 @@ body{
 	overflow: auto;
 }
 
-.remaining{
+.remained{
 	border-bottom: 1.5px solid lightgrey;
 }
 
 
 .product-item {
-	overflow: hidden;
+	word-break: break-all;
 	font-size: 14px;
 	color: #636363;
 	background-color: #E8E8E8;
 	display: inline-block;
 	padding: 8px;
 	border-radius: 5px;
-	margin-left: 3%;
-	margin-bottom: 3px;
+	margin: 10px 3%;
 	font-weight: bold;
 }
+
 .bought-item .amount{
 	text-decoration:line-through;
 }
+
 .amount {
 	font-weight: bold;
 	color: white;
@@ -289,16 +334,18 @@ body{
 	width: 20px;
 	text-align: center;
 }
-@media (max-width:620px) {
-	.product_box{
+
+@media (max-width:500px) {
+	.actions_container{
 		width: 100%;
 		order:1;
 	}
-	.cart{
+	.pasiv_container{
 		width: 100%;
 		order:1;
 	}
 }
+
 .badge {
 	border:0;
 	padding: 0;
@@ -325,14 +372,16 @@ body{
 	height:40px;
 	margin:auto;
 }
-.creator{
+
+.author{
 	margin:0;
 	height: 15px;
 	font-size: 10px;
 	display: flex;
 	text-indent: 6px;
 }
-.author-name{
+
+.author_name{
 	text-indent: 6px;
 	text-align: left;
 	display: flex;
@@ -340,20 +389,22 @@ body{
 	height:20px;
 	font-size: 15px;
 }
+
 .badge:hover{
 	height: 105px;
 	background-color: #4D01DA;
 }
+
 @media print {
 	* {
-		-webkit-print-color-adjust: exact; /* Для точного відтвореня кольорів у браузерах Chrome, Safari при друці*/
+		-webkit-print-color-adjust: exact; /* Chrome, Safari */
 	}
 	.badge{
 		background-color: white;
-		border: 3px solid black;
+		border: 3px solid rgb(96, 25, 127);
 		height: 85px;
 	}
-	.badge .creator, .badge .author-name{
+	.badge .author, .badge .author_name{
 		color:black;
 	}
 	.badge .buylist{
